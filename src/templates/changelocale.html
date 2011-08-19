@@ -1,0 +1,33 @@
+<html>
+<body>
+<form action="/newlocale" id="newlocale" method="post">
+<fieldset>
+
+<p>Language Options :
+	<select name="langLocale" id="langLocale">
+	{% for l in locales %}
+	<option value="{{l.language}}"> {{l.english_name}}</option>
+	{% endfor %}
+	</select>
+</p>
+<p>Date Options
+	<select name="dateLocale" id="dateLocale">
+	{% for l in locales %}
+	<option value="{{l.language}}"> {{l.english_name}}</option>
+	{% endfor %}
+	</select>
+</p>
+<p>
+	date format : <input type="text" name="dateFormat" id="dateFormat" 
+	{% if customdateformat %} value="{{customdateformat}}"{% endif %}/>
+	 dd=day MM= month yyyy=year with any separators
+</p>
+<p>
+	<input type="submit" value="Create" />
+	<input type="button" value="Cancel" onClick="location.href='/'"/>
+</p>
+</fieldset>
+</form>
+
+</body>
+</html>

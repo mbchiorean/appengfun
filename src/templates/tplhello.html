@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>i18n test</title>
+	<link rel="stylesheet" type="text/css" href="./images/datepickertheme/jquery.ui.all.css"/>
+	<script language="javascript" type="text/javascript" src="./js/jquery-1.6.2.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/jquery.ui.core.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/jquery.ui.widget.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/jquery.ui.datepicker.js"></script>
+	{% if locale %}
+	<script src="./js/i18n/jquery.ui.datepicker-{{locale}}.js"></script>
+	{% endif %}
+</head>
+<body>
+<h2>{% trans %}Welcome{% endtrans %}</h2>
+<p>{% trans %}This is a message from a template!{% endtrans %}</p>
+<p>Time is: {{ thetime }}</p>
+
+<form action="/addtime" id="newlocale" method="post">
+<a href="/changelocale">Regional Settings</a></br>
+<p><input type="text" id="datepicker" name="datepicker" value="{{datefromdb}}"></p>
+<p><input type="submit" value="Save date in datastore" /></p>
+</form>
+<script>
+	$(function() {
+		{% if locale %}
+		$.datepicker.setDefaults($.datepicker.regional['{{locale}}']);
+		{% endif %}
+		$( "#datepicker" ).datepicker({
+			buttonImageOnly: true,
+			changeYear: true,
+			{%if dateformat %}
+			dateFormat: '{{dateformat}}'
+			{% endif %}
+		});
+	});
+</script>
+</body>
+</html>

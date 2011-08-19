@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html>
+<head><title>Login</title></head>
+<body>
+<h2>{% trans %}Please login{% endtrans %}</h2>
+<p>{% for provider in providers %}[<a href="{{provider.url}}">{{provider.name}}</a>]{% endfor %}</p>
+</body>
+</html>
